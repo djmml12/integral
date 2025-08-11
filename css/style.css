@@ -398,18 +398,17 @@ a:focus {
 
 /*end header section*/
 /* slider section */
+
 .slider_section {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  flex: 1;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-image: url(../images/slider-bg.jpg);
-  background-size: cover;
+  align-items: center;
+  background-image: url(../images/int-negro.png);
+  background-size: cover;      /* La imagen cubre todo el contenedor */
+  background-position: center; /* Centrar la imagen */
+  background-repeat: no-repeat;/* Evitar repeticiones */
+  width: 100%;                 /* Ocupar todo el ancho */
+  min-height: 100vh;            /* O ajusta la altura que quieras */
 }
 
 .slider_section .dot_design {
