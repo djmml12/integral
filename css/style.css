@@ -400,15 +400,28 @@ a:focus {
 /* slider section */
 
 .slider_section {
-  flex: 1;
   display: flex;
-  align-items: center;
-  background-image: url(../images/int-negro.png);
-  background-size: cover;      /* La imagen cubre todo el contenedor */
-  background-position: center; /* Centrar la imagen */
-  background-repeat: no-repeat;/* Evitar repeticiones */
-  width: 100%;                 /* Ocupar todo el ancho */
-  min-height: 100vh;            /* O ajusta la altura que quieras */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;     /* Centrar verticalmente */
+  width: 100%;
+  overflow: hidden;        /* Oculta el recorte sobrante */
+}
+
+.slider_section img {
+  width: 100%;        /* Ajusta al ancho del contenedor */
+  max-width: 100%;    /* Evita desbordes */
+  max-height: 400px;  /* Altura máxima (puedes cambiarla) */
+  height: auto;
+  display: block;
+  object-fit: cover;  /* Recorte inteligente */
+  object-position: center; /* Centra el recorte */
+}
+
+/* Ajuste para móviles pequeños */
+@media (max-width: 480px) {
+  .slider_section img {
+    max-height: 250px; /* Más baja en smartphones */
+  }
 }
 
 .slider_section .dot_design {
