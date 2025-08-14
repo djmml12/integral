@@ -79,11 +79,7 @@ a:focus {
 /*header section*/
 
 /*logo section*/
-.header_logo_left img {
-  height: 40px; /* Ajusta según la altura de tu header_top */
-  width: auto;  /* Mantiene proporción */
-  display: block;
-}
+
 /*fin section*/
 
 .hero_area {

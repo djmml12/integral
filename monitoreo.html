@@ -155,19 +155,38 @@
 
   <h2>Nombre de la obra en monitoreo</h2>
 
-  <div class="video-container">
-      <video id="videoPlayer" class="video-js vjs-default-skin" controls autoplay preload="auto">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-      </video>
-  </div>
+  <title>Stream de Twitch Autoplay</title>
+  <style>
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
 
-  <script src="https://unpkg.com/video.js/dist/video.js"></script>
-  <script>
-      var player = videojs('videoPlayer', {
-          responsive: true,
-          fluid: true
-      });
-  </script>
+  <h1>Mi Stream de Twitch</h1>
+
+  <div class="video-container">
+    <iframe
+      src="https://player.twitch.tv/?channel=djmmsnm&parent=https://djmml12.github.io/integral/&autoplay=true&muted=true"
+      allowfullscreen
+      scrolling="no">
+    </iframe>
+  </div>
 
 
   <!-- contact section -->
