@@ -1058,7 +1058,7 @@ a:focus {
 .info_section {
   background-color: #252525;
   color: #ffffff;
-  padding: 45px 0;
+  padding: 10px 0;
 }
 
 .info_section .contact_nav {
@@ -1068,7 +1068,7 @@ a:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 25px 0;
+  padding: 5px 0;
   text-align: center;
 }
 
@@ -1099,13 +1099,13 @@ a:focus {
 }
 
 .info_section .info_top {
-  padding: 45px 0;
+  padding: 10px 0;
 }
 
 .info_section h4 {
   text-transform: uppercase;
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .info_section .info_links .info_links_menu {
@@ -1165,14 +1165,14 @@ a:focus {
 }
 
 .info_section .info_post .post_box:not(:nth-last-child(1)) {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .info_section .info_form input {
   width: 100%;
   border: none;
   height: 45px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding-left: 25px;
   background-color: #eaeaea;
   outline: none;
