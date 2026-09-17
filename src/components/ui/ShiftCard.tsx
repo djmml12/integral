@@ -1,0 +1,48 @@
+import { cn } from '@/lib/utils'
+import { motion } from 'motion/react'
+import { type ReactNode } from 'react'
+import { useIsMobile } from '@/hooks/useMediaQuery'
+
+interface ShiftCardProps {
+  className?: string
+  children: ReactNode
+  /** Detalle que aparece sobre la card al hacer hover (solo escritorio). */
+  hoverContent?: ReactNode
+  /** Detalle mostrado de forma fija debajo del contenido (solo móvil/táctil). */
+  mobileContent?: ReactNode
+}
+
+export function ShiftCard({ className, children, hoverContent, mobileContent }: ShiftCardProps) {
+  const isMobile = useIsMobile()
+
+  // En táctil no existe hover: renderizamos una card plana con el detalle
+  // siempre visible, sin blur ni overlay inalcanzable.
+  if (isMobile) {
+    return (
+      <div className={cn('relative overflow-hidden rounded-2xl bg-white shadow-md', className)}>
+        {children}
+        {mobileContent && <div className="mt-4">{mobileContent}</div>}
+      </div>
+    )
+  }
+
+  return (
+    <motion.div
+      className={cn(
+        'group relative overflow-hidden rounded-2xl bg-white shadow-md cursor-pointer',
+        className
+      )}
+      whileHover={{ y: -6 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+    >
+      <div className="transition-all duration-300 group-hover:blur-[1px] group-hover:scale-105">
+        {children}
+      </div>
+      {hoverContent && (
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-[#2C3E50]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6">
+          {hoverContent}
+        </div>
+      )}
+    </motion.div>
+  )
+}
