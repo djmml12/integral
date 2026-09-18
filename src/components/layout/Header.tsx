@@ -34,9 +34,8 @@ export function Header() {
       <div className="bg-[#252525] text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-2">
           {/* Marca compacta (solo móvil) */}
-          <Link to="/" className="flex items-center gap-2 lg:hidden">
-            <img src="/images/isotipoInt.png" alt="Integral" className="h-7 w-auto brightness-0 invert" />
-            <span className="font-semibold">Constructora Integral</span>
+          <Link to="/" className="flex items-center lg:hidden">
+            <img src="/images/logo.png" alt="Ingeniería Integral" className="h-8 w-auto brightness-0 invert" />
           </Link>
 
           {/* Datos de contacto (solo escritorio) */}
