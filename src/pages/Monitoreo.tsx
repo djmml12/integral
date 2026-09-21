@@ -96,7 +96,7 @@ export default function Monitoreo() {
                 {[
                   { Icon: Building2, label: 'Proyecto', value: 'NOG: 30643384' },
                   { Icon: FileText, label: 'Descripción', value: 'MEJORAMIENTO ESCUELA PRIMARIA CASERIO EL NANCE SAN RAFAEL PIE DE LA CUESTA, SAN MARCOS' },
-                  { Icon: Users, label: 'Entidad / Unidad compradora', value: 'Nombre de la entidad' },
+                  { Icon: Users, label: 'Entidad / Unidad compradora', value: 'MUNICIPALIDAD DE SAN RAFAEL PIE DE LA CUESTA' },
                   { Icon: Calendar, label: 'Empresa Ejecutora', value: 'Constructora Integral' },
                 ].map(({ Icon, label, value }) => (
                   <div key={label} className="p-6 flex items-start gap-4">
