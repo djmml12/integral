@@ -13,7 +13,7 @@ import {
 // ── Hero ──────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden bg-[#2C3E50]">
+    <section className="hero-fit relative flex flex-col items-center justify-center overflow-hidden bg-[#2C3E50] py-4">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10"
         style={{
@@ -31,16 +31,16 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full border border-white/20 text-white/70 text-sm mb-6 backdrop-blur-sm">
+          <span className="inline-block px-4 py-1 lg:py-1.5 rounded-full border border-white/20 text-white/70 text-xs lg:text-sm mb-[2.5svh] lg:mb-6 backdrop-blur-sm">
             Construcción · Diseño · Monitoreo
           </span>
-          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+          <h1 className="text-[length:min(9vw,6svh,3rem)] lg:text-7xl font-bold text-white leading-tight mb-[2svh] lg:mb-6">
             Construimos tu{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7fa8c9] to-[#a8c8e0]">
               visión
             </span>
           </h1>
-          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-[length:max(0.75rem,min(4vw,2.6svh,1.125rem))] lg:text-xl text-white/70 max-w-2xl mx-auto mb-[3svh] lg:mb-10 leading-relaxed">
             Con experiencia, tecnología de vanguardia y un equipo altamente capacitado,
             hacemos realidad tus proyectos con seguridad y excelencia.
           </p>
@@ -50,17 +50,17 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-[1.5svh] sm:gap-4"
         >
           <Link
             to="/contacto"
-            className="px-8 py-4 bg-white text-[#2C3E50] font-bold rounded-xl hover:bg-[#7fa8c9] hover:text-white transition-colors flex items-center gap-2"
+            className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-sm lg:text-base bg-white text-[#2C3E50] font-bold rounded-xl hover:bg-[#7fa8c9] hover:text-white transition-colors inline-flex items-center gap-2"
           >
             Cotizar Proyecto <ArrowRight size={18} />
           </Link>
           <Link
             to="/proyectos"
-            className="px-8 py-4 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm"
+            className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-sm lg:text-base inline-flex items-center border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm"
           >
             Ver Proyectos
           </Link>
@@ -71,7 +71,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+          className="mt-[3svh] lg:mt-20 grid grid-cols-3 gap-3 lg:gap-8 max-w-lg mx-auto"
         >
           {[
             { target: 50, suffix: '+', label: 'Proyectos' },
@@ -79,10 +79,10 @@ function Hero() {
             { target: 100, suffix: '%', label: 'Satisfacción' },
           ].map(({ target, suffix, label }) => (
             <div key={label} className="text-center">
-              <div className="text-3xl font-bold text-white">
+              <div className="text-[length:min(8vw,4.5svh)] lg:text-3xl font-bold text-white leading-tight">
                 <AnimatedCounter target={target} suffix={suffix} />
               </div>
-              <div className="text-white/50 text-sm mt-1">{label}</div>
+              <div className="text-white/50 text-xs lg:text-sm mt-1">{label}</div>
             </div>
           ))}
         </motion.div>
@@ -90,7 +90,7 @@ function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40"
+        className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

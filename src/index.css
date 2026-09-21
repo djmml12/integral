@@ -45,3 +45,16 @@
     text-wrap: balance;
   }
 }
+
+/* Hero: ocupa exactamente el alto visible bajo el header móvil (56px).
+   100svh = viewport "pequeño", que descarta la barra del navegador móvil. */
+.hero-fit {
+  min-height: calc(100vh - 56px);
+  min-height: calc(100svh - 56px);
+}
+
+@media (min-width: 1024px) {
+  .hero-fit {
+    min-height: 92vh;
+  }
+}
