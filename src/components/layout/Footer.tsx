@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { asset } from '@/lib/utils'
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
 
 const navLinks = [
@@ -36,7 +37,7 @@ export function Footer() {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <img src="/images/isotipoInt.png" alt="Integral" className="h-10 w-auto brightness-0 invert" />
+            <img src={asset('images/isotipoInt.png')} alt="Integral" className="h-10 w-auto brightness-0 invert" />
             <span className="font-bold text-lg">Constructora Integral</span>
           </div>
           <p className="text-white/60 text-sm leading-relaxed">

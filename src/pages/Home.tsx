@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { asset } from '@/lib/utils'
 import { motion, useInView } from 'motion/react'
 import { ShiftCard } from '@/components/ui/ShiftCard'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
@@ -105,25 +106,25 @@ const services = [
     Icon: Building2,
     title: 'Construcción',
     desc: 'Edificación de proyectos residenciales, comerciales e industriales con los más altos estándares de calidad.',
-    img: '/images/s1.png',
+    img: asset('images/s1.png'),
   },
   {
     Icon: Pencil,
     title: 'Diseño',
     desc: 'Diseño arquitectónico y de interiores que combina funcionalidad, estética y eficiencia para tu espacio ideal.',
-    img: '/images/s2.png',
+    img: asset('images/s2.png'),
   },
   {
     Icon: Eye,
     title: 'Monitoreo',
     desc: 'Supervisión en tiempo real de obras en curso para garantizar el cumplimiento de plazos y estándares.',
-    img: '/images/s3.png',
+    img: asset('images/s3.png'),
   },
   {
     Icon: Wrench,
     title: 'Mantenimiento',
     desc: 'Servicios integrales de mantenimiento preventivo y correctivo para preservar el valor de tu inversión.',
-    img: '/images/s1.png',
+    img: asset('images/s1.png'),
   },
 ]
 
@@ -203,7 +204,7 @@ function About() {
             <div className="absolute -top-6 -left-6 w-64 h-64 bg-[#2C3E50]/5 rounded-2xl" />
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#2C3E50]/10 rounded-2xl" />
             <img
-              src="/images/about-img.webp"
+              src={asset('images/about-img.webp')}
               alt="Acerca de Constructora Integral"
               className="relative z-10 w-full rounded-2xl shadow-2xl object-cover aspect-[4/3]"
             />

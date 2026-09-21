@@ -2,16 +2,17 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Link } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useMediaQuery'
+import { asset } from '@/lib/utils'
 
 const categories = ['Todos', 'Residencial', 'Comercial', 'Industrial', 'Diseño']
 
 const projects = [
-  { id: 1, title: 'Residencia Moderna', category: 'Residencial', img: '/images/project2.jpg', desc: 'Vivienda unifamiliar de 3 niveles con diseño contemporáneo.' },
-  { id: 2, title: 'Centro Comercial', category: 'Comercial', img: '/images/project2.jpg', desc: 'Complejo comercial de 8,000 m² en zona céntrica.' },
-  { id: 3, title: 'Bodega Industrial', category: 'Industrial', img: '/images/project2.jpg', desc: 'Instalación industrial con sistema de carga automatizado.' },
-  { id: 4, title: 'Diseño de Interiores', category: 'Diseño', img: '/images/project2.jpg', desc: 'Remodelación completa de oficinas corporativas.' },
-  { id: 5, title: 'Condominio Residencial', category: 'Residencial', img: '/images/project2.jpg', desc: 'Conjunto habitacional de 24 unidades con áreas comunes.' },
-  { id: 6, title: 'Edificio de Oficinas', category: 'Comercial', img: '/images/project2.jpg', desc: 'Torre de oficinas clase A con certificación energética.' },
+  { id: 1, title: 'Residencia Moderna', category: 'Residencial', img: asset('images/project2.jpg'), desc: 'Vivienda unifamiliar de 3 niveles con diseño contemporáneo.' },
+  { id: 2, title: 'Centro Comercial', category: 'Comercial', img: asset('images/project2.jpg'), desc: 'Complejo comercial de 8,000 m² en zona céntrica.' },
+  { id: 3, title: 'Bodega Industrial', category: 'Industrial', img: asset('images/project2.jpg'), desc: 'Instalación industrial con sistema de carga automatizado.' },
+  { id: 4, title: 'Diseño de Interiores', category: 'Diseño', img: asset('images/project2.jpg'), desc: 'Remodelación completa de oficinas corporativas.' },
+  { id: 5, title: 'Condominio Residencial', category: 'Residencial', img: asset('images/project2.jpg'), desc: 'Conjunto habitacional de 24 unidades con áreas comunes.' },
+  { id: 6, title: 'Edificio de Oficinas', category: 'Comercial', img: asset('images/project2.jpg'), desc: 'Torre de oficinas clase A con certificación energética.' },
 ]
 
 export default function Projects() {

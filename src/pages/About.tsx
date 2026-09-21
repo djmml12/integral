@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { Link } from 'react-router-dom'
+import { asset } from '@/lib/utils'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const values = [
@@ -61,7 +62,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <img src="/images/about-img.webp" alt="Nuestra empresa" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3]" />
+            <img src={asset('images/about-img.webp')} alt="Nuestra empresa" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3]" />
           </motion.div>
 
           <motion.div
