@@ -94,8 +94,8 @@ export default function Monitoreo() {
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
               <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
                 {[
-                  { Icon: Building2, label: 'Proyecto', value: 'Nombre de la obra' },
-                  { Icon: FileText, label: 'Descripción', value: 'Descripción del proyecto en ejecución' },
+                  { Icon: Building2, label: 'Proyecto', value: 'NOG: 30643384' },
+                  { Icon: FileText, label: 'Descripción', value: 'MEJORAMIENTO ESCUELA PRIMARIA CASERIO EL NANCE SAN RAFAEL PIE DE LA CUESTA, SAN MARCOS' },
                   { Icon: Users, label: 'Entidad / Unidad compradora', value: 'Nombre de la entidad' },
                   { Icon: Calendar, label: 'Empresa Ejecutora', value: 'Constructora Integral' },
                 ].map(({ Icon, label, value }) => (
