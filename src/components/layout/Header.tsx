@@ -31,24 +31,24 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Barra superior (oscura). En móvil es el único header: marca + hamburguesa */}
-      <div className="bg-[#252525] text-white text-sm">
+      <div className="bg-primary text-white/70 text-sm font-mono-label">
         <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-2">
           {/* Marca compacta (solo móvil) */}
           <Link to="/" className="flex items-center lg:hidden">
-            <img src={asset('images/logo.png')} alt="Ingeniería Integral" className="h-8 w-auto brightness-0 invert" />
+            <img src={asset('images/logo.png')} alt="Ingeniería Integral" className="h-7 w-auto brightness-0 invert" />
           </Link>
 
           {/* Datos de contacto (solo escritorio) */}
-          <div className="hidden lg:flex items-center gap-6">
-            <a href="tel:55555555" className="flex items-center gap-1.5 hover:text-[#7fa8c9] transition-colors">
+          <div className="hidden lg:flex items-center gap-6 text-xs">
+            <a href="tel:55555555" className="flex items-center gap-1.5 hover:text-accent transition-colors">
               <Phone size={13} />
               <span>555-5555</span>
             </a>
-            <a href="mailto:contacto@integral.com" className="flex items-center gap-1.5 hover:text-[#7fa8c9] transition-colors">
+            <a href="mailto:contacto@integral.com" className="flex items-center gap-1.5 hover:text-accent transition-colors">
               <Mail size={13} />
               <span>contacto@integral.com</span>
             </a>
-            <span className="flex items-center gap-1.5 text-white/60">
+            <span className="flex items-center gap-1.5 text-white/50">
               <MapPin size={13} />
               <span>Guatemala</span>
             </span>
@@ -64,14 +64,14 @@ export function Header() {
                 { Icon: Instagram, label: 'Instagram' },
               ].map(({ Icon, label }) => (
                 <a key={label} href="#" aria-label={label}
-                  className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#2C3E50] transition-colors">
+                  className="w-7 h-7 border border-white/20 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-primary transition-colors">
                   <Icon size={13} />
                 </a>
               ))}
             </div>
 
             <button
-              className="lg:hidden p-1.5 -mr-1.5 rounded-md text-white hover:bg-white/10 transition-colors"
+              className="lg:hidden p-1.5 -mr-1.5 text-white hover:bg-white/10 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Menú"
               aria-expanded={menuOpen}
@@ -82,29 +82,28 @@ export function Header() {
         </div>
       </div>
 
-      {/* Nav principal blanco (solo escritorio) */}
+      {/* Nav principal (solo escritorio) */}
       <motion.div
         className={cn(
-          'hidden lg:block bg-white transition-shadow duration-300',
-          scrolled ? 'shadow-md' : 'shadow-sm'
+          'hidden lg:block bg-paper border-b transition-shadow duration-300',
+          scrolled ? 'border-paper-line shadow-sm' : 'border-transparent'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img src={asset('images/isotipoInt.png')} alt="Integral" className="h-10 w-auto" />
-            <span className="font-bold text-xl text-[#2C3E50]">Constructora Integral</span>
+          <Link to="/" className="flex items-center">
+            <img src={asset('images/logo.png')} alt="Ingeniería Integral" className="h-10 w-auto" />
           </Link>
 
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-1 font-mono-label text-xs uppercase">
             {navLinks.map(({ label, to }) => (
               <Link
                 key={to}
                 to={to}
                 className={cn(
-                  'px-4 py-2 rounded-lg text-sm font-medium transition-colors',
+                  'px-4 py-2.5 transition-colors',
                   location.pathname === to
-                    ? 'bg-[#2C3E50] text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-primary text-paper'
+                    : 'text-primary/70 hover:bg-primary/5 hover:text-primary'
                 )}
               >
                 {label}
@@ -114,7 +113,7 @@ export function Header() {
 
           <Link
             to="/contacto"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2C3E50] text-white text-sm font-semibold rounded-lg hover:bg-[#3d5166] transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 border border-primary text-primary font-mono-label text-xs uppercase hover:bg-primary hover:text-paper transition-colors"
           >
             Cotizar Proyecto
           </Link>
@@ -129,18 +128,18 @@ export function Header() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="overflow-hidden bg-white shadow-lg lg:hidden"
+            className="overflow-hidden bg-paper border-b border-paper-line shadow-lg lg:hidden"
           >
-            <nav className="flex flex-col px-4 py-3 gap-1">
+            <nav className="flex flex-col px-4 py-3 gap-1 font-mono-label text-xs uppercase">
               {navLinks.map(({ label, to }) => (
                 <Link
                   key={to}
                   to={to}
                   className={cn(
-                    'px-4 py-3 rounded-lg text-sm font-medium transition-colors',
+                    'px-4 py-3 transition-colors',
                     location.pathname === to
-                      ? 'bg-[#2C3E50] text-white'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'bg-primary text-paper'
+                      : 'text-primary/70 hover:bg-primary/5'
                   )}
                 >
                   {label}
@@ -148,7 +147,7 @@ export function Header() {
               ))}
               <Link
                 to="/contacto"
-                className="mt-2 px-5 py-3 bg-[#2C3E50] text-white text-sm font-semibold rounded-lg text-center"
+                className="mt-2 px-5 py-3 bg-primary text-paper text-center"
               >
                 Cotizar Proyecto
               </Link>

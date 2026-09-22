@@ -1,5 +1,7 @@
 import { motion } from 'motion/react'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
+import { PageHero } from '@/components/ui/PageHero'
+import { CornerFrame } from '@/components/ui/CornerFrame'
 import { Link } from 'react-router-dom'
 import { asset } from '@/lib/utils'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
@@ -16,24 +18,14 @@ const values = [
 export default function About() {
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-[#2C3E50] py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`, backgroundSize: '40px 40px' }}
-        />
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-[#7fa8c9] text-sm font-semibold uppercase tracking-widest">Nuestra historia</span>
-            <h1 className="text-5xl font-bold text-white mt-3 mb-5">Acerca de Nosotros</h1>
-            <p className="text-white/70 text-lg leading-relaxed">
-              Más de una década construyendo sueños y forjando confianza en Guatemala.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Nuestra historia"
+        title="Acerca de Nosotros"
+        description="Más de una década construyendo sueños y forjando confianza en Guatemala."
+      />
 
       {/* Stats */}
-      <section className="py-16 bg-white border-b border-gray-100">
+      <section className="py-16 bg-white border-b border-paper-line">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -43,10 +35,11 @@ export default function About() {
               { target: 100, suffix: '%', label: 'Clientes satisfechos' },
             ].map(({ target, suffix, label }) => (
               <div key={label}>
-                <div className="text-4xl font-bold text-[#2C3E50]">
+                <div className="h-[2px] w-8 bg-accent mx-auto mb-3" />
+                <div className="text-4xl font-bold text-primary">
                   <AnimatedCounter target={target} suffix={suffix} />
                 </div>
-                <div className="text-gray-500 text-sm mt-2">{label}</div>
+                <div className="text-primary/60 text-sm font-mono-label uppercase mt-2">{label}</div>
               </div>
             ))}
           </div>
@@ -54,7 +47,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-paper">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -62,7 +55,9 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <img src={asset('images/about-img.webp')} alt="Nuestra empresa" className="w-full rounded-2xl shadow-xl object-cover aspect-[4/3]" />
+            <CornerFrame colorClassName="text-primary">
+              <img src={asset('images/project2.jpg')} alt="Nuestra empresa" className="w-full object-cover aspect-[4/3]" />
+            </CornerFrame>
           </motion.div>
 
           <motion.div
@@ -72,22 +67,24 @@ export default function About() {
             viewport={{ once: true }}
           >
             <div className="mb-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Nuestra Misión</h2>
-              <p className="text-gray-600 leading-relaxed">
+              <h2 className="text-3xl font-bold text-primary mb-4">Nuestra Misión</h2>
+              <div className="h-[3px] w-12 bg-accent mb-4" />
+              <p className="text-primary/70 leading-relaxed">
                 Brindar soluciones integrales de construcción, diseño y supervisión que superen las expectativas
                 de nuestros clientes, garantizando calidad, seguridad y entrega oportuna en cada proyecto.
               </p>
             </div>
             <div className="mb-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Nuestra Visión</h2>
-              <p className="text-gray-600 leading-relaxed">
+              <h2 className="text-3xl font-bold text-primary mb-4">Nuestra Visión</h2>
+              <div className="h-[3px] w-12 bg-accent mb-4" />
+              <p className="text-primary/70 leading-relaxed">
                 Ser la constructora de referencia en Guatemala, reconocida por la excelencia en cada obra,
                 la innovación tecnológica y el impacto positivo en las comunidades donde construimos.
               </p>
             </div>
             <Link
               to="/contacto"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2C3E50] text-white font-semibold rounded-xl hover:bg-[#3d5166] transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors"
             >
               Trabaja con nosotros <ArrowRight size={16} />
             </Link>
@@ -99,8 +96,8 @@ export default function About() {
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <span className="text-[#2C3E50] text-sm font-semibold uppercase tracking-widest">Lo que nos define</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">Nuestros Valores</h2>
+            <span className="text-primary font-mono-label text-xs uppercase">Lo que nos define</span>
+            <h2 className="text-4xl font-bold text-primary mt-2">Nuestros Valores</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {values.map((value, i) => (
@@ -110,10 +107,10 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 viewport={{ once: true }}
-                className="flex items-start gap-3 p-4 rounded-xl hover:bg-gray-50 transition-colors"
+                className="flex items-start gap-3 p-4 border border-paper-line hover:border-primary/30 transition-colors"
               >
-                <CheckCircle2 className="text-[#2C3E50] mt-0.5 shrink-0" size={20} />
-                <p className="text-gray-700 text-sm leading-relaxed">{value}</p>
+                <CheckCircle2 className="text-primary mt-0.5 shrink-0" size={20} />
+                <p className="text-primary/70 text-sm leading-relaxed">{value}</p>
               </motion.div>
             ))}
           </div>

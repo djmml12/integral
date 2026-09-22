@@ -13,20 +13,20 @@ const navLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#252525] text-white">
+    <footer className="bg-primary text-white">
       {/* Contact bar */}
       <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-wrap justify-center gap-8 text-sm">
-          <a href="tel:55555555" className="flex flex-col items-center gap-2 hover:text-[#7fa8c9] transition-colors">
-            <Phone size={22} className="text-[#7fa8c9]" />
+        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-wrap justify-center gap-8 text-sm font-mono-label">
+          <a href="tel:55555555" className="flex flex-col items-center gap-2 hover:text-accent transition-colors">
+            <Phone size={22} className="text-accent" />
             <span>555-5555</span>
           </a>
-          <a href="mailto:contacto@integral.com" className="flex flex-col items-center gap-2 hover:text-[#7fa8c9] transition-colors">
-            <Mail size={22} className="text-[#7fa8c9]" />
+          <a href="mailto:contacto@integral.com" className="flex flex-col items-center gap-2 hover:text-accent transition-colors">
+            <Mail size={22} className="text-accent" />
             <span>contacto@integral.com</span>
           </a>
           <span className="flex flex-col items-center gap-2 text-white/60">
-            <MapPin size={22} className="text-[#7fa8c9]" />
+            <MapPin size={22} className="text-accent" />
             <span>Guatemala</span>
           </span>
         </div>
@@ -37,8 +37,7 @@ export function Footer() {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <img src={asset('images/isotipoInt.png')} alt="Integral" className="h-10 w-auto brightness-0 invert" />
-            <span className="font-bold text-lg">Constructora Integral</span>
+            <img src={asset('images/logo.png')} alt="Ingeniería Integral" className="h-9 w-auto brightness-0 invert" />
           </div>
           <p className="text-white/60 text-sm leading-relaxed">
             Transformamos tus ideas en realidades sólidas con compromiso, calidad y profesionalismo.
@@ -51,7 +50,7 @@ export function Footer() {
               { Icon: Instagram, label: 'Instagram' },
             ].map(({ Icon, label }) => (
               <a key={label} href="#" aria-label={label}
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#2C3E50] transition-colors">
+                className="w-9 h-9 border border-white/20 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-primary transition-colors">
                 <Icon size={15} />
               </a>
             ))}
@@ -60,7 +59,7 @@ export function Footer() {
 
         {/* Links */}
         <div>
-          <h4 className="font-semibold text-sm uppercase tracking-widest mb-4 text-white/40">Navegación</h4>
+          <h4 className="font-mono-label text-xs uppercase mb-4 text-accent">Navegación</h4>
           <ul className="space-y-2">
             {navLinks.map(({ label, to }) => (
               <li key={to}>
@@ -74,11 +73,11 @@ export function Footer() {
 
         {/* Newsletter placeholder */}
         <div>
-          <h4 className="font-semibold text-sm uppercase tracking-widest mb-4 text-white/40">Cotización Rápida</h4>
+          <h4 className="font-mono-label text-xs uppercase mb-4 text-accent">Cotización Rápida</h4>
           <p className="text-white/60 text-sm mb-4">¿Tienes un proyecto en mente? Contáctanos.</p>
           <Link
             to="/contacto"
-            className="inline-block px-5 py-2.5 bg-[#2C3E50] text-white text-sm font-semibold rounded-lg hover:bg-[#3d5166] transition-colors"
+            className="inline-block px-5 py-2.5 border border-white/30 text-white font-mono-label text-xs uppercase hover:bg-accent hover:border-accent hover:text-primary transition-colors"
           >
             Escribenos
           </Link>
@@ -87,8 +86,8 @@ export function Footer() {
 
       {/* Bottom */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 text-center text-white/40 text-sm">
-          © {new Date().getFullYear()} Constructora Integral. Todos los derechos reservados.
+        <div className="max-w-7xl mx-auto px-4 py-4 text-center text-white/40 text-xs font-mono-label">
+          © {new Date().getFullYear()} DLAB. Todos los derechos reservados.
         </div>
       </div>
     </footer>

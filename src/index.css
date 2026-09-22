@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2C3E50;
-  --color-primary-dark: #252525;
-  --color-primary-light: #3d5166;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-primary: #222D57;
+  --color-primary-dark: #1a2244;
+  --color-primary-light: #3d4a7a;
+  --color-accent: #F8B014;
+  --color-paper: #F2EFE8;
+  --color-paper-line: #DEDACF;
+  --font-sans: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 @layer base {
@@ -20,8 +24,8 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: #ffffff;
-    color: #0c0c0c;
+    background-color: var(--color-paper);
+    color: var(--color-primary);
     overflow-x: hidden;
     /* Quita el flash gris al tocar enlaces/botones en móvil */
     -webkit-tap-highlight-color: transparent;
@@ -44,6 +48,20 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .font-mono-label {
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
+  }
+
+  /* Retícula tipo plano técnico: usar sobre fondo claro (paper) u oscuro (primary). */
+  .blueprint-grid {
+    background-image:
+      repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px 56px),
+      repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 56px);
+    background-position: 0 0;
+  }
+
 }
 
 /* Hero: ocupa exactamente el alto visible bajo el header móvil (56px).

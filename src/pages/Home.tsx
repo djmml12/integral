@@ -4,6 +4,7 @@ import { asset } from '@/lib/utils'
 import { motion, useInView } from 'motion/react'
 import { ShiftCard } from '@/components/ui/ShiftCard'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
+import { CornerFrame } from '@/components/ui/CornerFrame'
 import {
   Building2, Pencil, Eye, Wrench,
   ShieldCheck, Trophy, Handshake,
@@ -13,17 +14,9 @@ import {
 // ── Hero ──────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="hero-fit relative flex flex-col items-center justify-center overflow-hidden bg-[#2C3E50] py-4">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}
-      />
-      {/* Gradient blobs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#3d5166] rounded-full blur-3xl opacity-30" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#1a2a38] rounded-full blur-3xl opacity-40" />
+    <section className="hero-fit relative flex flex-col items-center justify-center overflow-hidden bg-paper py-4 border-b border-paper-line">
+      {/* Retícula de plano técnico */}
+      <div className="absolute inset-0 text-paper-line blueprint-grid" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         <motion.div
@@ -31,16 +24,14 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <span className="inline-block px-4 py-1 lg:py-1.5 rounded-full border border-white/20 text-white/70 text-xs lg:text-sm mb-[2.5svh] lg:mb-6 backdrop-blur-sm">
+          <span className="inline-block px-6 py-2.5 lg:px-8 lg:py-3 border-2 border-primary/40 font-mono-label uppercase text-primary/80 text-xs lg:text-base mb-[2.5svh] lg:mb-6">
             Construcción · Diseño · Monitoreo
           </span>
-          <h1 className="text-[length:min(9vw,6svh,3rem)] lg:text-7xl font-bold text-white leading-tight mb-[2svh] lg:mb-6">
-            Construimos tu{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7fa8c9] to-[#a8c8e0]">
-              visión
-            </span>
+          <h1 className="text-[length:min(9vw,6svh,3rem)] lg:text-7xl font-bold text-primary leading-tight mb-[1.5svh] lg:mb-4">
+            Construimos tu <span className="text-accent">visión</span>
           </h1>
-          <p className="text-[length:max(0.75rem,min(4vw,2.6svh,1.125rem))] lg:text-xl text-white/70 max-w-2xl mx-auto mb-[3svh] lg:mb-10 leading-relaxed">
+          <div className="h-[3px] w-16 bg-accent mx-auto mb-[2svh] lg:mb-6" />
+          <p className="text-[length:max(0.75rem,min(4vw,2.6svh,1.125rem))] lg:text-xl text-primary/70 max-w-2xl mx-auto mb-[3svh] lg:mb-10 leading-relaxed">
             Con experiencia, tecnología de vanguardia y un equipo altamente capacitado,
             hacemos realidad tus proyectos con seguridad y excelencia.
           </p>
@@ -54,13 +45,13 @@ function Hero() {
         >
           <Link
             to="/contacto"
-            className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-sm lg:text-base bg-white text-[#2C3E50] font-bold rounded-xl hover:bg-[#7fa8c9] hover:text-white transition-colors inline-flex items-center gap-2"
+            className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-xs lg:text-sm font-mono-label uppercase bg-primary text-paper font-semibold hover:bg-primary-light transition-colors inline-flex items-center gap-2"
           >
             Cotizar Proyecto <ArrowRight size={18} />
           </Link>
           <Link
             to="/proyectos"
-            className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-sm lg:text-base inline-flex items-center border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm"
+            className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-xs lg:text-sm font-mono-label uppercase inline-flex items-center border-2 border-primary text-primary font-semibold hover:bg-primary/5 transition-colors"
           >
             Ver Proyectos
           </Link>
@@ -79,10 +70,11 @@ function Hero() {
             { target: 100, suffix: '%', label: 'Satisfacción' },
           ].map(({ target, suffix, label }) => (
             <div key={label} className="text-center">
-              <div className="text-[length:min(8vw,4.5svh)] lg:text-3xl font-bold text-white leading-tight">
+              <div className="h-[2px] w-8 bg-accent mx-auto mb-2 hidden lg:block" />
+              <div className="text-[length:min(8vw,4.5svh)] lg:text-3xl font-bold text-primary leading-tight">
                 <AnimatedCounter target={target} suffix={suffix} />
               </div>
-              <div className="text-white/50 text-xs lg:text-sm mt-1">{label}</div>
+              <div className="text-primary/50 text-[10px] lg:text-xs font-mono-label uppercase mt-1">{label}</div>
             </div>
           ))}
         </motion.div>
@@ -90,7 +82,7 @@ function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40"
+        className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 text-primary/30"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
@@ -133,7 +125,7 @@ function Services() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="py-24 bg-gray-50">
+    <section ref={ref} className="py-24 bg-paper">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -141,9 +133,10 @@ function Services() {
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <span className="text-[#2C3E50] text-sm font-semibold uppercase tracking-widest">Nuestros servicios</span>
-          <h2 className="text-4xl font-bold text-gray-900 mt-2">Lo que hacemos</h2>
-          <p className="text-gray-500 mt-3 max-w-xl">
+          <span className="text-primary font-mono-label text-xs uppercase">Nuestros servicios</span>
+          <h2 className="text-4xl font-bold text-primary mt-2">Lo que hacemos</h2>
+          <div className="h-[3px] w-16 bg-accent mt-4 mb-4" />
+          <p className="text-primary/60 max-w-xl">
             Soluciones completas para cada etapa de tu proyecto de construcción.
           </p>
         </motion.div>
@@ -157,16 +150,16 @@ function Services() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <ShiftCard
-                className="h-full p-6 border border-gray-100"
+                className="h-full p-6"
                 hoverContent={
                   <p className="text-white text-sm leading-relaxed">{desc}</p>
                 }
               >
-                <div className="w-12 h-12 rounded-xl bg-[#2C3E50]/10 flex items-center justify-center mb-4">
-                  <Icon className="text-[#2C3E50]" size={22} />
+                <div className="w-12 h-12 border border-primary/20 flex items-center justify-center mb-4">
+                  <Icon className="text-primary" size={22} />
                 </div>
-                <h3 className="font-bold text-gray-900 text-lg mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed md:line-clamp-3">{desc}</p>
+                <h3 className="font-bold text-primary text-lg mb-2">{title}</h3>
+                <p className="text-primary/60 text-sm leading-relaxed md:line-clamp-3">{desc}</p>
               </ShiftCard>
             </motion.div>
           ))}
@@ -175,7 +168,7 @@ function Services() {
         <div className="mt-10 text-center">
           <Link
             to="/servicios"
-            className="inline-flex items-center gap-2 text-[#2C3E50] font-semibold hover:underline"
+            className="inline-flex items-center gap-2 text-primary font-mono-label text-xs uppercase hover:text-accent transition-colors"
           >
             Ver todos los servicios <ArrowRight size={16} />
           </Link>
@@ -201,16 +194,18 @@ function About() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="absolute -top-6 -left-6 w-64 h-64 bg-[#2C3E50]/5 rounded-2xl" />
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#2C3E50]/10 rounded-2xl" />
-            <img
-              src={asset('images/about-img.webp')}
-              alt="Acerca de Constructora Integral"
-              className="relative z-10 w-full rounded-2xl shadow-2xl object-cover aspect-[4/3]"
-            />
-            <div className="absolute -bottom-4 -left-4 z-20 bg-[#2C3E50] text-white rounded-xl px-5 py-4">
+            <div className="absolute -top-6 -left-6 w-64 h-64 border border-primary/15" />
+            <div className="absolute -bottom-6 -right-6 w-40 h-40 border border-primary/25" />
+            <CornerFrame className="relative z-10" colorClassName="text-primary">
+              <img
+                src={asset('images/project2.jpg')}
+                alt="Acerca de Constructora Integral"
+                className="w-full object-cover aspect-[4/3]"
+              />
+            </CornerFrame>
+            <div className="absolute -bottom-4 -left-4 z-20 bg-primary text-white px-5 py-4">
               <div className="text-3xl font-bold"><AnimatedCounter target={10} suffix="+" /></div>
-              <div className="text-white/70 text-sm">Años de experiencia</div>
+              <div className="text-white/70 text-xs font-mono-label uppercase">Años de experiencia</div>
             </div>
           </motion.div>
 
@@ -220,22 +215,22 @@ function About() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <span className="text-[#2C3E50] text-sm font-semibold uppercase tracking-widest">Acerca de nosotros</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-6">
+            <span className="text-primary font-mono-label text-xs uppercase">Acerca de nosotros</span>
+            <h2 className="text-4xl font-bold text-primary mt-2 mb-6">
               Construimos más que espacios,<br />construimos confianza
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <p className="text-primary/70 leading-relaxed mb-6">
               En Constructora Integral, transformamos tus ideas en realidades sólidas. Con un equipo de expertos,
               materiales de alta calidad y un compromiso inquebrantable con la excelencia, aseguramos que tu
               proyecto se entregue a tiempo y con los mejores estándares.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-primary/70 leading-relaxed mb-8">
               Desde el diseño hasta la entrega final, trabajamos con transparencia, profesionalismo y pasión
               para hacer que cada proyecto supere tus expectativas.
             </p>
             <Link
               to="/acerca"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#2C3E50] text-white font-semibold rounded-xl hover:bg-[#3d5166] transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors"
             >
               Conoce más <ArrowRight size={16} />
             </Link>
@@ -270,7 +265,7 @@ function WhyUs() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="py-24 bg-[#2C3E50]">
+    <section ref={ref} className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -278,8 +273,9 @@ function WhyUs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-[#7fa8c9] text-sm font-semibold uppercase tracking-widest">Por qué elegirnos</span>
-          <h2 className="text-4xl font-bold text-white mt-2">¿Por qué trabajar con nosotros?</h2>
+          <span className="text-primary font-mono-label text-xs uppercase">Por qué elegirnos</span>
+          <h2 className="text-4xl font-bold text-primary mt-2">¿Por qué trabajar con nosotros?</h2>
+          <div className="h-[3px] w-16 bg-accent mx-auto mt-4" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -290,13 +286,13 @@ function WhyUs() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
               whileHover={{ y: -4 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors"
+              className="bg-paper border border-paper-line p-8 hover:border-primary/30 transition-colors"
             >
-              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
-                <Icon className="text-[#7fa8c9]" size={26} />
+              <div className="w-14 h-14 border border-primary/20 flex items-center justify-center mb-6">
+                <Icon className="text-primary" size={26} />
               </div>
-              <h3 className="text-white font-bold text-lg mb-3 leading-snug">{title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{desc}</p>
+              <h3 className="text-primary font-bold text-lg mb-3 leading-snug">{title}</h3>
+              <p className="text-primary/60 text-sm leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </div>
@@ -308,14 +304,14 @@ function WhyUs() {
 // ── Contact CTA ───────────────────────────────────────────────────────
 function ContactCTA() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-paper">
       <div className="max-w-3xl mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-[#2C3E50] to-[#1a2a38] rounded-3xl p-12 shadow-2xl"
+          className="bg-primary p-12 border-t-4 border-accent"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             ¿Listo para empezar tu proyecto?
@@ -325,7 +321,7 @@ function ContactCTA() {
           </p>
           <Link
             to="/contacto"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#2C3E50] font-bold rounded-xl hover:bg-[#7fa8c9] hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-mono-label text-xs uppercase font-semibold hover:bg-white transition-colors"
           >
             Escribenos ahora <ArrowRight size={18} />
           </Link>

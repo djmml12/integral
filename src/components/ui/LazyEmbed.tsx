@@ -55,14 +55,14 @@ export function LazyEmbed({
       type="button"
       onClick={() => setLoaded(true)}
       className={cn(
-        'group w-full h-full flex flex-col items-center justify-center gap-3 bg-[#2C3E50] text-white cursor-pointer',
+        'group w-full h-full flex flex-col items-center justify-center gap-3 bg-primary text-white cursor-pointer',
         className
       )}
       aria-label={label}
     >
       <motion.span
         whileTap={{ scale: 0.9 }}
-        className="w-16 h-16 rounded-full bg-white/15 flex items-center justify-center group-hover:bg-white/25 transition-colors"
+        className="w-16 h-16 border border-white/25 flex items-center justify-center group-hover:bg-white/10 transition-colors"
       >
         {icon ?? <Play size={26} className="text-white ml-1" />}
       </motion.span>

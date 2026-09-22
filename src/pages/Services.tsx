@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { ShiftCard } from '@/components/ui/ShiftCard'
+import { PageHero } from '@/components/ui/PageHero'
 import { Link } from 'react-router-dom'
 import { Building2, Pencil, Eye, Wrench, HardHat, TreePine, ArrowRight } from 'lucide-react'
 
@@ -45,24 +46,15 @@ const services = [
 export default function Services() {
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-[#2C3E50] py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`, backgroundSize: '40px 40px' }}
-        />
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-[#7fa8c9] text-sm font-semibold uppercase tracking-widest">Soluciones completas</span>
-            <h1 className="text-5xl font-bold text-white mt-3 mb-5">Nuestros Servicios</h1>
-            <p className="text-white/70 text-lg leading-relaxed max-w-2xl mx-auto">
-              Ofrecemos soluciones integrales para cada etapa de tu proyecto, desde el concepto hasta la entrega.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Soluciones completas"
+        title="Nuestros Servicios"
+        description="Ofrecemos soluciones integrales para cada etapa de tu proyecto, desde el concepto hasta la entrega."
+        descriptionClassName="max-w-2xl mx-auto"
+      />
 
       {/* Services grid */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-paper">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map(({ Icon, title, desc, features }, i) => (
@@ -74,33 +66,33 @@ export default function Services() {
                 viewport={{ once: true }}
               >
                 <ShiftCard
-                  className="h-full bg-white p-8 border border-gray-100"
+                  className="h-full bg-white p-8"
                   hoverContent={
                     <ul className="space-y-1">
                       {features.map(f => (
                         <li key={f} className="text-white text-sm flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#7fa8c9] shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-accent shrink-0" />
                           {f}
                         </li>
                       ))}
                     </ul>
                   }
                   mobileContent={
-                    <ul className="space-y-1.5 border-t border-gray-100 pt-4">
+                    <ul className="space-y-1.5 border-t border-paper-line pt-4">
                       {features.map(f => (
-                        <li key={f} className="text-gray-600 text-sm flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#2C3E50] shrink-0" />
+                        <li key={f} className="text-primary/60 text-sm flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary shrink-0" />
                           {f}
                         </li>
                       ))}
                     </ul>
                   }
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#2C3E50]/10 flex items-center justify-center mb-5">
-                    <Icon className="text-[#2C3E50]" size={26} />
+                  <div className="w-14 h-14 border border-primary/20 flex items-center justify-center mb-5">
+                    <Icon className="text-primary" size={26} />
                   </div>
-                  <h3 className="font-bold text-gray-900 text-xl mb-3">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="font-bold text-primary text-xl mb-3">{title}</h3>
+                  <p className="text-primary/60 text-sm leading-relaxed">{desc}</p>
                 </ShiftCard>
               </motion.div>
             ))}
@@ -114,10 +106,10 @@ export default function Services() {
             viewport={{ once: true }}
             className="mt-16 text-center"
           >
-            <p className="text-gray-600 text-lg mb-6">¿Necesitas un servicio específico? Hablemos.</p>
+            <p className="text-primary/70 text-lg mb-6">¿Necesitas un servicio específico? Hablemos.</p>
             <Link
               to="/contacto"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#2C3E50] text-white font-bold rounded-xl hover:bg-[#3d5166] transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors"
             >
               Solicitar cotización <ArrowRight size={18} />
             </Link>
