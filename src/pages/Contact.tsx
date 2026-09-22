@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react'
 import { LazyEmbed } from '@/components/ui/LazyEmbed'
 import { PageHero } from '@/components/ui/PageHero'
+import { fast, fastDelay, springPop } from '@/lib/motion'
 
 const MAPS_SRC = 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d240.90664148875464!2d-91.79453932802467!3d14.964576200295202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sgt!4v1755210126225!5m2!1ses-419!2sgt'
 
@@ -31,9 +32,9 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={fast}
             viewport={{ once: true }}
             className="lg:col-span-2 space-y-6"
           >
@@ -63,9 +64,9 @@ export default function Contact() {
 
           {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={fastDelay(0.08)}
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
@@ -117,12 +118,15 @@ export default function Contact() {
                     />
                   </div>
 
-                  <button
+                  <motion.button
                     type="submit"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={springPop}
                     className="w-full py-3.5 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors flex items-center justify-center gap-2"
                   >
                     <Send size={16} /> Enviar mensaje
-                  </button>
+                  </motion.button>
                 </form>
               )}
             </div>

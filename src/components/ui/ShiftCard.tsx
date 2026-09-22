@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
+import { springSnap } from '@/lib/motion'
 import { type ReactNode } from 'react'
 import { useIsMobile } from '@/hooks/useMediaQuery'
 
@@ -32,14 +33,14 @@ export function ShiftCard({ className, children, hoverContent, mobileContent }: 
         'group relative overflow-hidden bg-white border border-paper-line cursor-pointer',
         className
       )}
-      whileHover={{ y: -4 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      whileHover={{ y: -6 }}
+      transition={springSnap}
     >
-      <div className="transition-all duration-300 group-hover:blur-[1px] group-hover:scale-105">
+      <div className="transition-all duration-200 ease-out group-hover:blur-[1px] group-hover:scale-105">
         {children}
       </div>
       {hoverContent && (
-        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-primary/95 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6">
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-primary/95 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-6">
           {hoverContent}
         </div>
       )}

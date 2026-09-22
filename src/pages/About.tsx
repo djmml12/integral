@@ -2,7 +2,8 @@ import { motion } from 'motion/react'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { PageHero } from '@/components/ui/PageHero'
 import { CornerFrame } from '@/components/ui/CornerFrame'
-import { Link } from 'react-router-dom'
+import { MotionLink } from '@/components/ui/MotionLink'
+import { fast, fastDelay, stagger, springPop } from '@/lib/motion'
 import { asset } from '@/lib/utils'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
@@ -33,14 +34,26 @@ export default function About() {
               { target: 10, suffix: '+', label: 'Años de experiencia' },
               { target: 30, suffix: '+', label: 'Profesionales' },
               { target: 100, suffix: '%', label: 'Clientes satisfechos' },
-            ].map(({ target, suffix, label }) => (
-              <div key={label}>
-                <div className="h-[2px] w-8 bg-accent mx-auto mb-3" />
+            ].map(({ target, suffix, label }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={stagger(i, 0.07)}
+                viewport={{ once: true }}
+              >
+                <motion.div
+                  className="h-[2px] w-8 bg-accent mx-auto mb-3 origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={fastDelay(0.1 + i * 0.07, 0.3)}
+                  viewport={{ once: true }}
+                />
                 <div className="text-4xl font-bold text-primary">
                   <AnimatedCounter target={target} suffix={suffix} />
                 </div>
                 <div className="text-primary/60 text-sm font-mono-label uppercase mt-2">{label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -50,9 +63,9 @@ export default function About() {
       <section className="py-24 bg-paper">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={fast}
             viewport={{ once: true }}
           >
             <CornerFrame colorClassName="text-primary">
@@ -61,9 +74,9 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={fastDelay(0.08)}
             viewport={{ once: true }}
           >
             <div className="mb-10">
@@ -82,12 +95,15 @@ export default function About() {
                 la innovación tecnológica y el impacto positivo en las comunidades donde construimos.
               </p>
             </div>
-            <Link
+            <MotionLink
               to="/contacto"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.94 }}
+              transition={springPop}
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors"
             >
               Trabaja con nosotros <ArrowRight size={16} />
-            </Link>
+            </MotionLink>
           </motion.div>
         </div>
       </section>
@@ -103,9 +119,9 @@ export default function About() {
             {values.map((value, i) => (
               <motion.div
                 key={value}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={stagger(i, 0.05, 0.28)}
                 viewport={{ once: true }}
                 className="flex items-start gap-3 p-4 border border-paper-line hover:border-primary/30 transition-colors"
               >

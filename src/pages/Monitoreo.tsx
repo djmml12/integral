@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { Tv2, MapPin, FileText, Calendar, Building2, Users } from 'lucide-react'
 import { LazyEmbed } from '@/components/ui/LazyEmbed'
 import { PageHero } from '@/components/ui/PageHero'
+import { fast, EASE_SNAP } from '@/lib/motion'
 
 const TWITCH_CHANNEL = 'djmmsnm'
 // `parent` debe coincidir con el dominio que sirve la página.
@@ -27,7 +28,7 @@ export default function Monitoreo() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={fast}
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -55,7 +56,7 @@ export default function Monitoreo() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={fast}
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -76,7 +77,7 @@ export default function Monitoreo() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={fast}
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -111,7 +112,7 @@ export default function Monitoreo() {
                       className="h-full bg-accent"
                       initial={{ width: 0 }}
                       whileInView={{ width: '65%' }}
-                      transition={{ duration: 1.2, ease: 'easeOut' }}
+                      transition={{ duration: 0.8, ease: EASE_SNAP }}
                       viewport={{ once: true }}
                     />
                   </div>

@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 import { asset } from '@/lib/utils'
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
+import { MotionLink } from '@/components/ui/MotionLink'
+import { springPop } from '@/lib/motion'
 
 const navLinks = [
   { label: 'Inicio', to: '/' },
@@ -49,10 +51,13 @@ export function Footer() {
               { Icon: Linkedin, label: 'LinkedIn' },
               { Icon: Instagram, label: 'Instagram' },
             ].map(({ Icon, label }) => (
-              <a key={label} href="#" aria-label={label}
+              <motion.a key={label} href="#" aria-label={label}
+                whileHover={{ scale: 1.12, rotate: -4 }}
+                whileTap={{ scale: 0.9 }}
+                transition={springPop}
                 className="w-9 h-9 border border-white/20 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-primary transition-colors">
                 <Icon size={15} />
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -63,9 +68,14 @@ export function Footer() {
           <ul className="space-y-2">
             {navLinks.map(({ label, to }) => (
               <li key={to}>
-                <Link to={to} className="text-white/70 hover:text-white text-sm transition-colors">
+                <MotionLink
+                  to={to}
+                  whileHover={{ x: 4 }}
+                  transition={springPop}
+                  className="inline-block text-white/70 hover:text-white text-sm transition-colors"
+                >
                   {label}
-                </Link>
+                </MotionLink>
               </li>
             ))}
           </ul>
@@ -75,12 +85,15 @@ export function Footer() {
         <div>
           <h4 className="font-mono-label text-xs uppercase mb-4 text-accent">Cotización Rápida</h4>
           <p className="text-white/60 text-sm mb-4">¿Tienes un proyecto en mente? Contáctanos.</p>
-          <Link
+          <MotionLink
             to="/contacto"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.94 }}
+            transition={springPop}
             className="inline-block px-5 py-2.5 border border-white/30 text-white font-mono-label text-xs uppercase hover:bg-accent hover:border-accent hover:text-primary transition-colors"
           >
             Escribenos
-          </Link>
+          </MotionLink>
         </div>
       </div>
 

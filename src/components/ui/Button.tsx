@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
+import { springPop } from '@/lib/motion'
 import { type ButtonHTMLAttributes, forwardRef } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -13,8 +14,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.94 }}
+        transition={springPop}
         className={cn(
           'inline-flex items-center justify-center gap-2 font-mono-label uppercase font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
           {

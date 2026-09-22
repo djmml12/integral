@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { motion } from 'motion/react'
 import { Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { springPop } from '@/lib/motion'
 import { useIsMobile } from '@/hooks/useMediaQuery'
 
 interface LazyEmbedProps {
@@ -61,7 +62,9 @@ export function LazyEmbed({
       aria-label={label}
     >
       <motion.span
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.88 }}
+        transition={springPop}
         className="w-16 h-16 border border-white/25 flex items-center justify-center group-hover:bg-white/10 transition-colors"
       >
         {icon ?? <Play size={26} className="text-white ml-1" />}

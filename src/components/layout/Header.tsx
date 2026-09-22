@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram, Menu, X } from 'lucide-react'
 import { cn, asset } from '@/lib/utils'
+import { MotionLink } from '@/components/ui/MotionLink'
+import { springPop, EASE_SNAP } from '@/lib/motion'
 
 const navLinks = [
   { label: 'Inicio', to: '/' },
@@ -85,7 +87,7 @@ export function Header() {
       {/* Nav principal (solo escritorio) */}
       <motion.div
         className={cn(
-          'hidden lg:block bg-paper border-b transition-shadow duration-300',
+          'hidden lg:block bg-paper border-b transition-shadow duration-150',
           scrolled ? 'border-paper-line shadow-sm' : 'border-transparent'
         )}
       >
@@ -111,12 +113,15 @@ export function Header() {
             ))}
           </nav>
 
-          <Link
+          <MotionLink
             to="/contacto"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.94 }}
+            transition={springPop}
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-primary text-primary font-mono-label text-xs uppercase hover:bg-primary hover:text-paper transition-colors"
           >
             Cotizar Proyecto
-          </Link>
+          </MotionLink>
         </div>
       </motion.div>
 
@@ -127,7 +132,7 @@ export function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.16, ease: EASE_SNAP }}
             className="overflow-hidden bg-paper border-b border-paper-line shadow-lg lg:hidden"
           >
             <nav className="flex flex-col px-4 py-3 gap-1 font-mono-label text-xs uppercase">
@@ -145,12 +150,15 @@ export function Header() {
                   {label}
                 </Link>
               ))}
-              <Link
+              <MotionLink
                 to="/contacto"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.96 }}
+                transition={springPop}
                 className="mt-2 px-5 py-3 bg-primary text-paper text-center"
               >
                 Cotizar Proyecto
-              </Link>
+              </MotionLink>
             </nav>
           </motion.div>
         )}

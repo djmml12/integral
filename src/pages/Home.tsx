@@ -1,10 +1,11 @@
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
 import { asset } from '@/lib/utils'
 import { motion, useInView } from 'motion/react'
 import { ShiftCard } from '@/components/ui/ShiftCard'
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { CornerFrame } from '@/components/ui/CornerFrame'
+import { MotionLink } from '@/components/ui/MotionLink'
+import { fast, fastDelay, stagger, springPop, springSnap } from '@/lib/motion'
 import {
   Building2, Pencil, Eye, Wrench,
   ShieldCheck, Trophy, Handshake,
@@ -20,9 +21,9 @@ function Hero() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={fast}
         >
           <span className="inline-block px-6 py-2.5 lg:px-8 lg:py-3 border-2 border-primary/40 font-mono-label uppercase text-primary/80 text-xs lg:text-base mb-[2.5svh] lg:mb-6">
             Construcción · Diseño · Monitoreo
@@ -30,7 +31,12 @@ function Hero() {
           <h1 className="text-[length:min(9vw,6svh,3rem)] lg:text-7xl font-bold text-primary leading-tight mb-[1.5svh] lg:mb-4">
             Construimos tu <span className="text-accent">visión</span>
           </h1>
-          <div className="h-[3px] w-16 bg-accent mx-auto mb-[2svh] lg:mb-6" />
+          <motion.div
+            className="h-[3px] w-16 bg-accent mx-auto mb-[2svh] lg:mb-6 origin-left"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={fastDelay(0.15, 0.4)}
+          />
           <p className="text-[length:max(0.75rem,min(4vw,2.6svh,1.125rem))] lg:text-xl text-primary/70 max-w-2xl mx-auto mb-[3svh] lg:mb-10 leading-relaxed">
             Con experiencia, tecnología de vanguardia y un equipo altamente capacitado,
             hacemos realidad tus proyectos con seguridad y excelencia.
@@ -38,41 +44,52 @@ function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={fastDelay(0.12)}
           className="flex flex-col sm:flex-row items-center justify-center gap-[1.5svh] sm:gap-4"
         >
-          <Link
+          <MotionLink
             to="/contacto"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.94 }}
+            transition={springPop}
             className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-xs lg:text-sm font-mono-label uppercase bg-primary text-paper font-semibold hover:bg-primary-light transition-colors inline-flex items-center gap-2"
           >
             Cotizar Proyecto <ArrowRight size={18} />
-          </Link>
-          <Link
+          </MotionLink>
+          <MotionLink
             to="/proyectos"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.94 }}
+            transition={springPop}
             className="px-8 h-[max(2.5rem,6svh)] lg:h-auto lg:py-4 text-xs lg:text-sm font-mono-label uppercase inline-flex items-center border-2 border-primary text-primary font-semibold hover:bg-primary/5 transition-colors"
           >
             Ver Proyectos
-          </Link>
+          </MotionLink>
         </motion.div>
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={fastDelay(0.22)}
           className="mt-[3svh] lg:mt-20 grid grid-cols-3 gap-3 lg:gap-8 max-w-lg mx-auto"
         >
           {[
             { target: 50, suffix: '+', label: 'Proyectos' },
             { target: 10, suffix: '+', label: 'Años exp.' },
             { target: 100, suffix: '%', label: 'Satisfacción' },
-          ].map(({ target, suffix, label }) => (
+          ].map(({ target, suffix, label }, i) => (
             <div key={label} className="text-center">
-              <div className="h-[2px] w-8 bg-accent mx-auto mb-2 hidden lg:block" />
+              <motion.div
+                className="h-[2px] w-8 bg-accent mx-auto mb-2 hidden lg:block origin-left"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={fastDelay(0.3 + i * 0.06, 0.3)}
+              />
               <div className="text-[length:min(8vw,4.5svh)] lg:text-3xl font-bold text-primary leading-tight">
-                <AnimatedCounter target={target} suffix={suffix} />
+                <AnimatedCounter target={target} suffix={suffix} duration={900} />
               </div>
               <div className="text-primary/50 text-[10px] lg:text-xs font-mono-label uppercase mt-1">{label}</div>
             </div>
@@ -83,8 +100,8 @@ function Hero() {
       {/* Scroll indicator */}
       <motion.div
         className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 text-primary/30"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 1.3, repeat: Infinity, ease: 'easeInOut' }}
       >
         <ChevronDown size={28} />
       </motion.div>
@@ -128,14 +145,19 @@ function Services() {
     <section ref={ref} className="py-24 bg-paper">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={fast}
           className="mb-14"
         >
           <span className="text-primary font-mono-label text-xs uppercase">Nuestros servicios</span>
           <h2 className="text-4xl font-bold text-primary mt-2">Lo que hacemos</h2>
-          <div className="h-[3px] w-16 bg-accent mt-4 mb-4" />
+          <motion.div
+            className="h-[3px] w-16 bg-accent mt-4 mb-4 origin-left"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={fastDelay(0.15, 0.4)}
+          />
           <p className="text-primary/60 max-w-xl">
             Soluciones completas para cada etapa de tu proyecto de construcción.
           </p>
@@ -145,9 +167,9 @@ function Services() {
           {services.map(({ Icon, title, desc }, i) => (
             <motion.div
               key={title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 22 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={stagger(i)}
             >
               <ShiftCard
                 className="h-full p-6"
@@ -166,12 +188,15 @@ function Services() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link
+          <MotionLink
             to="/servicios"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={springPop}
             className="inline-flex items-center gap-2 text-primary font-mono-label text-xs uppercase hover:text-accent transition-colors"
           >
             Ver todos los servicios <ArrowRight size={16} />
-          </Link>
+          </MotionLink>
         </div>
       </div>
     </section>
@@ -189,9 +214,9 @@ function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image with decorative elements */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            transition={fast}
             className="relative"
           >
             <div className="absolute -top-6 -left-6 w-64 h-64 border border-primary/15" />
@@ -211,9 +236,9 @@ function About() {
 
           {/* Text */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={fastDelay(0.08)}
           >
             <span className="text-primary font-mono-label text-xs uppercase">Acerca de nosotros</span>
             <h2 className="text-4xl font-bold text-primary mt-2 mb-6">
@@ -228,12 +253,15 @@ function About() {
               Desde el diseño hasta la entrega final, trabajamos con transparencia, profesionalismo y pasión
               para hacer que cada proyecto supere tus expectativas.
             </p>
-            <Link
+            <MotionLink
               to="/acerca"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.94 }}
+              transition={springPop}
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors"
             >
               Conoce más <ArrowRight size={16} />
-            </Link>
+            </MotionLink>
           </motion.div>
         </div>
       </div>
@@ -268,24 +296,29 @@ function WhyUs() {
     <section ref={ref} className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={fast}
           className="text-center mb-16"
         >
           <span className="text-primary font-mono-label text-xs uppercase">Por qué elegirnos</span>
           <h2 className="text-4xl font-bold text-primary mt-2">¿Por qué trabajar con nosotros?</h2>
-          <div className="h-[3px] w-16 bg-accent mx-auto mt-4" />
+          <motion.div
+            className="h-[3px] w-16 bg-accent mx-auto mt-4 origin-left"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={fastDelay(0.15, 0.4)}
+          />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reasons.map(({ Icon, title, desc }, i) => (
             <motion.div
               key={title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 22 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              whileHover={{ y: -4 }}
+              transition={stagger(i, 0.1)}
+              whileHover={{ y: -6, transition: springSnap }}
               className="bg-paper border border-paper-line p-8 hover:border-primary/30 transition-colors"
             >
               <div className="w-14 h-14 border border-primary/20 flex items-center justify-center mb-6">
@@ -307,9 +340,9 @@ function ContactCTA() {
     <section className="py-20 bg-paper">
       <div className="max-w-3xl mx-auto px-4 text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={springSnap}
           viewport={{ once: true }}
           className="bg-primary p-12 border-t-4 border-accent"
         >
@@ -319,12 +352,15 @@ function ContactCTA() {
           <p className="text-white/70 mb-8 text-lg">
             Cuéntanos tu idea y te damos una cotización sin compromiso.
           </p>
-          <Link
+          <MotionLink
             to="/contacto"
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.93 }}
+            transition={springPop}
             className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-mono-label text-xs uppercase font-semibold hover:bg-white transition-colors"
           >
             Escribenos ahora <ArrowRight size={18} />
-          </Link>
+          </MotionLink>
         </motion.div>
       </div>
     </section>

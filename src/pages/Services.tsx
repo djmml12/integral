@@ -1,7 +1,8 @@
 import { motion } from 'motion/react'
 import { ShiftCard } from '@/components/ui/ShiftCard'
 import { PageHero } from '@/components/ui/PageHero'
-import { Link } from 'react-router-dom'
+import { MotionLink } from '@/components/ui/MotionLink'
+import { fast, stagger, springPop } from '@/lib/motion'
 import { Building2, Pencil, Eye, Wrench, HardHat, TreePine, ArrowRight } from 'lucide-react'
 
 const services = [
@@ -60,9 +61,9 @@ export default function Services() {
             {services.map(({ Icon, title, desc, features }, i) => (
               <motion.div
                 key={title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                transition={stagger(i, 0.06)}
                 viewport={{ once: true }}
               >
                 <ShiftCard
@@ -100,19 +101,22 @@ export default function Services() {
 
           {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={fast}
             viewport={{ once: true }}
             className="mt-16 text-center"
           >
             <p className="text-primary/70 text-lg mb-6">¿Necesitas un servicio específico? Hablemos.</p>
-            <Link
+            <MotionLink
               to="/contacto"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.94 }}
+              transition={springPop}
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-mono-label text-xs uppercase hover:bg-primary-light transition-colors"
             >
               Solicitar cotización <ArrowRight size={18} />
-            </Link>
+            </MotionLink>
           </motion.div>
         </div>
       </section>

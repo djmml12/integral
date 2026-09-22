@@ -4,6 +4,7 @@ import { Link } from 'lucide-react'
 import { useIsMobile } from '@/hooks/useMediaQuery'
 import { asset, cn } from '@/lib/utils'
 import { PageHero } from '@/components/ui/PageHero'
+import { EASE_SNAP, springPop } from '@/lib/motion'
 
 const categories = ['Todos', 'Residencial', 'Comercial', 'Industrial', 'Diseño']
 
@@ -36,9 +37,12 @@ export default function Projects() {
           {/* Filter tabs */}
           <div className="flex flex-wrap gap-2 justify-center mb-14 font-mono-label text-xs uppercase">
             {categories.map(cat => (
-              <button
+              <motion.button
                 key={cat}
                 onClick={() => setActive(cat)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.92 }}
+                transition={springPop}
                 className={cn(
                   'px-5 py-2 border transition-colors',
                   active === cat
@@ -47,7 +51,7 @@ export default function Projects() {
                 )}
               >
                 {cat}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -58,10 +62,10 @@ export default function Projects() {
                 <motion.div
                   key={id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.92 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  transition={{ duration: 0.22, ease: EASE_SNAP }}
                   className={
                     isMobile
                       ? 'overflow-hidden bg-white border border-paper-line'
@@ -85,9 +89,9 @@ export default function Projects() {
                   ) : (
                     // Escritorio: revelar detalle al hover
                     <>
-                      <img src={img} alt={title} className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <img src={img} alt={title} className="w-full h-56 object-cover transition-transform duration-300 ease-out group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-200 ease-out">
                         <span className="text-accent text-[10px] font-mono-label uppercase">{category}</span>
                         <h3 className="text-white font-bold text-lg mt-1">{title}</h3>
                         <p className="text-white/70 text-sm mt-1">{desc}</p>
